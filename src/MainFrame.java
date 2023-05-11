@@ -1,3 +1,4 @@
+//Alejandro Belmar Girón
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +38,7 @@ public class MainFrame extends JFrame{
     private JRadioButton hub3;
     private JTextArea print2;
     private JTextArea print3;
+    private JButton base_button;
 
 
     public MainFrame ()
@@ -44,7 +46,7 @@ public class MainFrame extends JFrame{
         final int[] confirmar_boton = new int[1];
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Ejemplo de ventana");
-        this.setSize(700, 450);
+        this.setSize(900, 450);
         this.setVisible(true);
         this.add(main_panel);
         Puerto puerto = new Puerto();
@@ -276,6 +278,22 @@ public class MainFrame extends JFrame{
                         String pais2 = campoPais.getText();
                         printder.setText(String.valueOf(puerto.contenedoresPais(pais2)));
                         break;
+
+                    case 5:
+                        prioridad=1;
+                        if (botonPrioridad1.isSelected()){
+                            prioridad = 1;
+                        }
+                        if (botonPrioridad2.isSelected()){
+                            prioridad = 2;
+                        }
+                        if (botonPrioridad3.isSelected()){
+                            prioridad = 3;
+                        }
+
+                        printder.setText(puerto.base_puerto(prioridad));
+                        break;
+
                 }
             }
         });
@@ -337,6 +355,38 @@ public class MainFrame extends JFrame{
                     hub1.setSelected(false);
                     hub2.setSelected(false);
                 }
+            }
+        });
+        base_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //Botón nuevo añadido para mostrar contenedores de la base
+                textohub.setVisible(false);
+                hub1.setVisible(false);
+                hub2.setVisible(false);
+                hub3.setVisible(false);
+                campoID.setVisible(false);
+                textoid.setVisible(false);
+                textoprioridad.setVisible(true);
+                botonPrioridad1.setVisible(true);
+                botonPrioridad2.setVisible(true);
+                botonPrioridad3.setVisible(true);
+                campoPeso.setVisible(false);
+                textopeso.setVisible(false);
+                campoErecibe.setVisible(false);
+                textoempresarec.setVisible(false);
+                campoEenvia.setVisible(false);
+                textoempresaenv.setVisible(false);
+                campoPais.setVisible(false);
+                textopais.setVisible(false);
+                campoDesc.setVisible(false);
+                textodescripicion.setVisible(false);
+                checkaduanas.setVisible(false);
+                campocolumna.setVisible(false);
+                textocolumna.setVisible(false);
+                botonok.setVisible(true);
+                printder.setText("");
+                confirmar_boton[0]=5;
             }
         });
     }
